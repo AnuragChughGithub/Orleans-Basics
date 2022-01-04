@@ -5,6 +5,8 @@ using System;
 
 namespace OrleansBasics
 {
+    //Reference 1, https://medium.com/swlh/getting-started-with-microsoft-orleans-882cdac4307f
+
     public class Program
     {
         static int Main(string[] args)
