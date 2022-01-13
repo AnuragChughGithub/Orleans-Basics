@@ -1,4 +1,4 @@
-# Orleans-Basics
+# Orleans Basics
 
 An Orleans application consists of a few separate pieces, generally all as separate projects:
 
