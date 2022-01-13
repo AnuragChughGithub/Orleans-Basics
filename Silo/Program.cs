@@ -2,6 +2,7 @@
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
+using System.Net;
 
 namespace OrleansBasics
 {
@@ -41,7 +42,8 @@ namespace OrleansBasics
                     options.ClusterId = "dev";
                     options.ServiceId = "OrleansBasics";
                 })
-                .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences())
+                .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
+                //.ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences())
                 .ConfigureLogging(logging => logging.AddConsole());
 
             var host = builder.Build();
