@@ -43,7 +43,7 @@ namespace OrleansBasics
                     options.ServiceId = "OrleansBasics";
                 })
                 .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
-                //.ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences())
+                .UseDashboard(options => { })
                 .ConfigureLogging(logging => logging.AddConsole());
 
             var host = builder.Build();
