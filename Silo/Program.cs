@@ -1,54 +1,73 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Threading.Tasks;
+using OrleansBasics.Grains;
+using OrleansBasics.Common.Config;
+using OrleansBasics.Common.Helpers;
+using OrleansBasics.Silo.ExtensionMethods;
+using OrleansBasics.Silo.Helpers;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
-using System.Net;
+using Orleans.Statistics;
 
-namespace OrleansBasics
+namespace OrleansBasics.Silo;
+
+public class Program
 {
-    public class Program
+    public static async Task Main(string[] args)
     {
-        public static int Main(string[] args)
-        {
-            return RunMainAsync().Result;
-        }
+        var (env, configurationRoot, orleansConfig) =
+            ConsoleAppConfigurator.BootstrapConfigurationRoot();
 
-        private static async Task<int> RunMainAsync()
-        {
-            try
+        await CreateHostBuilder(args, env, configurationRoot, orleansConfig).Build().RunAsync();
+    }
+
+    private static IHostBuilder CreateHostBuilder(string[] args, string env, IConfigurationRoot configurationRoot, OrleansConfig orleansConfig)
+    {
+        return Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((context, builder) =>
             {
-                var host = await StartSilo();
-                Console.WriteLine("\n\n Press Enter to terminate...\n\n");
-                Console.ReadLine();
-
-                await host.StopAsync();
-
-                return 0;
-            }
-            catch (Exception ex)
+                context.HostingEnvironment.EnvironmentName = env;
+                builder.AddConfiguration(configurationRoot);
+            })
+            .ConfigureServices(DependencyInjectionHelper.IocContainerRegistration)
+            .ConfigureLogging(logging =>
             {
-                Console.WriteLine(ex);
-                return 1;
-            }
-        }
-
-        private static async Task<ISiloHost> StartSilo()
-        {
-            // define the cluster configuration
-            var builder = new SiloHostBuilder()
-                .UseLocalhostClustering()
-                .Configure<ClusterOptions>(options =>
-                {
-                    options.ClusterId = "dev";
-                    options.ServiceId = "OrleansBasics";
-                })
-                .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
-                .UseDashboard(options => { })
-                .ConfigureLogging(logging => logging.AddConsole());
-
-            var host = builder.Build();
-            await host.StartAsync();
-            return host;
-        }
+                logging.AddConsole();
+                logging.SetMinimumLevel(LogLevel.Information);
+            })
+            .ConfigureWebHostDefaults(builder =>
+            {
+                builder.UseStartup<Startup>();
+            })
+            .UseOrleans(siloBuilder =>
+            {
+                siloBuilder
+                    .ConfigureClustering(
+                        orleansConfig,
+                        env
+                    )
+                    .Configure<ClusterOptions>(options =>
+                    {
+                        options.ClusterId = "dev";
+                        options.ServiceId = "HelloWorldApp";
+                    })
+                    .AddMemoryGrainStorage(Constants.OrleansMemoryProvider)
+                    .ConfigureApplicationParts(parts =>
+                    {
+                        parts.AddApplicationPart(typeof(IGrainMarker).Assembly).WithReferences();
+                    })
+                    //.UsePerfCounterEnvironmentStatistics()
+                    .UseDashboard(options => { })
+                    .UseInMemoryReminderService()
+                    .ConfigureLogging(logging =>
+                    {
+                        logging.SetMinimumLevel(LogLevel.Warning);
+                        logging.AddConsole();
+                    });
+            });
     }
 }

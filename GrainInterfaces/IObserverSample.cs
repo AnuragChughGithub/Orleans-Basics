@@ -1,6 +1,6 @@
 ﻿using Orleans;
 
-namespace GrainInterfaces
+namespace OrleansBasics.GrainInterfaces
 {
     public interface IObserverSample : IGrainObserver
     {

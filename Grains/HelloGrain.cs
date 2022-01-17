@@ -1,20 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Orleans;
+using OrleansBasics.GrainInterfaces;
 
-namespace OrleansBasics
+namespace OrleansBasics.Grains
 {
-    public class HelloGrain : Orleans.Grain, IHello
+    public class HelloGrain : Grain, IHelloGrain, IGrainMarker
     {
-        private readonly ILogger logger;
-
-        public HelloGrain(ILogger<HelloGrain> logger)
+        public Task<string> SayHello(string name)
         {
-            this.logger = logger;
-        }
-
-        Task<string> IHello.SayHello(string greeting)
-        {
-            logger.LogInformation($"\n SayHello message received: greeting = '{greeting}'");
-            return Task.FromResult($"\n Client said: '{greeting}', so HelloGrain says: Hello!");
+            return Task.FromResult($"Hello from grain {this.GetGrainIdentity()}, {name}!");
         }
     }
 }
