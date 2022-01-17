@@ -11,14 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grains", "Grains\Grains.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silo", "Silo\Silo.csproj", "{10F0F0D3-B85C-4A4A-BC27-7D597625ABB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{6FCBCBC1-BB46-4F25-83DD-AE3EFA5FA6F9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "appSettings", "appSettings", "{424C14E6-EE8A-4282-AB25-95CDCFB2C721}"
-	ProjectSection(SolutionItems) = preProject
-		appsettings.dev.json = appsettings.dev.json
-		appsettings.json = appsettings.json
-		appsettings.local.json = appsettings.local.json
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{6FCBCBC1-BB46-4F25-83DD-AE3EFA5FA6F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
