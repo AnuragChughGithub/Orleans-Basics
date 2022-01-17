@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OrleansBasics.Common.Config;
+﻿namespace OrleansBasics.Common.Config;
 
 /// <summary>
 /// Contains properties utilized for configuration Orleans

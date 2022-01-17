@@ -1,5 +1,4 @@
-﻿
-namespace OrleansBasics.GrainInterfaces
+﻿namespace OrleansBasics.GrainInterfaces
 {
     //Interface that defines an Orleans grain and its key type
 
