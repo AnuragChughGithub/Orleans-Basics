@@ -59,7 +59,7 @@ public class Program
                     {
                         parts.AddApplicationPart(typeof(IGrainMarker).Assembly).WithReferences();
                     })
-                    //.UsePerfCounterEnvironmentStatistics()
+                    .UsePerfCounterEnvironmentStatistics()
                     .UseDashboard(options => { })
                     .UseInMemoryReminderService()
                     .ConfigureLogging(logging =>

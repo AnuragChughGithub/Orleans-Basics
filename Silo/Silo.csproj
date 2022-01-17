@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansTelemetryConsumers.Counters" Version="3.5.1" />
     <PackageReference Include="Microsoft.Orleans.Server" Version="3.5.1" />
     <PackageReference Include="OrleansDashboard" Version="3.5.1" />
   </ItemGroup>
@@ -18,5 +19,12 @@
     <ProjectReference Include="..\GrainInterfaces\GrainInterfaces.csproj" />
     <ProjectReference Include="..\Grains\Grains.csproj" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <Content Include="..\appSettings\appsettings.json" Link="appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\appSettings\appsettings.local.json" Link="appsettings.local.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\appSettings\appsettings.dev.json" Link="appsettings.dev.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+	
 
 </Project>
