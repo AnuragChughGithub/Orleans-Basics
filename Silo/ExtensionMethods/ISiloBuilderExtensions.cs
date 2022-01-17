@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using OrleansBasics.Common.Config;
 using Microsoft.Extensions.Options;
 using Orleans.Configuration;

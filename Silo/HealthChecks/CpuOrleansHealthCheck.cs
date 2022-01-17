@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using OrleansBasics.GrainInterfaces.HealthChecks;
+﻿using OrleansBasics.GrainInterfaces.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Orleans;
 

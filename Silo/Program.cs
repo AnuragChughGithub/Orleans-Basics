@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using OrleansBasics.Grains;
+﻿using OrleansBasics.Grains;
 using OrleansBasics.Common.Config;
 using OrleansBasics.Common.Helpers;
 using OrleansBasics.Silo.ExtensionMethods;
