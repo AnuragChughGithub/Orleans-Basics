@@ -1,0 +1,11 @@
+﻿Reference 1, https://medium.com/swlh/getting-started-with-microsoft-orleans-882cdac4307f
+  
+Reference 2, https://kritner.medium.com/microsoft-orleans-reusing-grains-and-grain-state-136977facd42
+  
+Reference 3, https://medium.com/free-code-camp/microsoft-orleans-reporting-dashboard-16465d255199
+  
+Reference 4, https://kritner.medium.com/microsoft-orleans-dependency-injection-6379d52a7169
+  
+Reference 5, https://kritner.medium.com/microsoft-orleans-reminders-and-grains-calling-grains-6ad58ad104a2
+  
+Reference 6, https://kritner.medium.com/microsoft-orleans-my-first-podcast-interview-43d3c2e1aa3f
